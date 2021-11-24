@@ -1,3 +1,6 @@
+# Naming conventions
+[Naming conventions](https://cloud.google.com/apis/design/naming_convention)
+
 # OpenApi
 [source](https://medium.com/hoursofoperation/design-document-and-mock-your-apis-with-swagger-a8dc8f5a57e9)
 
@@ -243,5 +246,3 @@ On the other hand if you have existing code you wish to document you can follow 
 
 If you use Gitlab, then your [docs can be generated and published to Gitlab Pages using Gitlab’s shared runners.](https://medium.com/@aronbudinszky/auto-generate-swagger-docs-to-gitlab-pages-ca040230df3a)
 
-# Naming conventions
-[Naming conventions](https://cloud.google.com/apis/design/naming_convention)
