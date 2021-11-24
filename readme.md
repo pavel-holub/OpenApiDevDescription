@@ -4,7 +4,7 @@
 # OpenApi
 [source](https://medium.com/hoursofoperation/design-document-and-mock-your-apis-with-swagger-a8dc8f5a57e9)
 
-## JSON Line formating tool
+## JSON Line formatting tool
 [jq](https://stedolan.github.io/jq/) is a lightweight and flexible command-line JSON processor.
 
 [Download](https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe) and rename to jq.exe and copy to current dir
