@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  title: Example Task Manager Project
+  description: An example API documentation for a task manager.
+  version: "1.0"
+servers:
+  - url: 'http://127.0.0.1:4010/'
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        title:
+          type: string
+          x-faker: name.firstName
+          example: 'Buy eggs'
+          description: 'The description task to be done.'
+        completed:
+          type: boolean
+          x-faker: datatype.number
+          example: true
+          description: 'True or false to mark whether the task has been completed.'
+        id:
+          type: integer
+          example: 3
+          description: 'A unique identifier for this task.'
+
+  responses:
+    error:
+      description: ERROR
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: Describes the error in a human-readable format.
+                type: string
+                example: Permission denied.
+
+  parameters:
+    task:
+      name: id
+      in: query
+      required: true
+      description: The identifier of the task at hand.
+      schema:
+        type: string
+paths:
+  /tasks:
+    get:
+      summary: Get tasks
+      description: Get a list of tasks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Task'
+  /task:
+    post:
+      summary: Create a task
+      description: Creates a new task
+      parameters:
+        - name: title
+          in: query
+          description: The new title of the task. Leave out if you don't want to change it.
+          schema:
+            type: string
+            example: Take the dog for a walk
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  type: string
+                  description: Updated name of the pet
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    description: Returns the id of the new task.
+                    type: integer
+                    example: 23
+        '500':
+          $ref: '#/components/responses/error'         
+    put:
+      summary: Update a task
+      description: Modify the task's title or its completed status.
+      parameters:
+        - $ref: '#/components/parameters/task'
+        - name: title
+          in: query
+          description: The new title of the task. Leave out if you don't want to change it.
+          schema:
+            type: string
+            example: Take the dog for a walk
+        - name: completed
+          in: query
+          description: The completion status of the task. Leave out if you don't want to change it.
+          schema:
+            type: boolean
+            example: true
+      responses:
+        '200':
+          description: OK
+        '500':
+          $ref: '#/components/responses/error'         
+    delete:
+      summary: Delete a task
+      description: Removes a task completely.
+      parameters: [
+        $ref: '#/components/parameters/task'
+      ]
+      responses:
+        '200':
+          description: OK
+        '500':
+          $ref: '#/components/responses/error'         
+      
